@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+{#? Affichage sm md  d-block  d-lg-none" #}
+<div class="container-fluid home-header py-3" style='background-image: url("{{ asset("assets/image/header-chantier.webp") }}") !important;   background-size: cover; background-repeat: no-repeat;'>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-start py-5">
+            <div class="col-12 col-lg-5 my-4 mx-4 py-5 px-5 background-home-content h-50">
+                <p class="text-center fs-3 fs-lg-1">Notre travail est de vous en trouver <span class="count-ads "><br>1</span> parmi
+                    <span class="count-ads "> 
+                        {% for count in countAds[0] %}
+                            {{ count }}
+                        {% endfor %}
+                    </span>
+                    offres actuelles
+                 </p>
+            </div>
+            <div class="col-12 col-lg-5 my-4 mx-4 pt-3 px-5 background-home-content">
+                <div class="mb-3 h-50 ">
+                    <label for="exampleFormControlInput1" class="form-label fs-5">Où ?  Choisissez votre ville</label>
+                    <input type="text" class="form-control fs-5" id="search" name="term" data-search placeholder="Nom de la ville...">
+                    <div class="overlay-result">
+                        <ul class="search-result-item" id="results"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{#! Affichage lg #}
+{# <div class="container-fluid home-header py-3 d-none d-lg-block" style='background-image: url("{{ asset("assets/image/header-chantier.webp") }}") !important;   background-size: cover; background-repeat: no-repeat;'>
+    <div class="container">
+        <div class="row d-flex  align-items-stretch justify-content-center align-items-center py-5" style="height: 70vh;">
+            <div class="col-lg-5 mx-4 py-5 px-5 d-flex justify-content-center align-items-center background-home-content">
+                <h1 class="text-center">Notre travail est de vous en trouver <span class="count-ads "><br>1</span> parmi
+                    <span class="count-ads "> 
+                        {% for count in countAds[0] %}
+                            {{ count }}
+                        {% endfor %}
+                    </span>
+                    offres actuelles
+                 </h1>
+            </div>
+            <div class="col-lg-5 mx-4 py-5 ps-2 fs-3 d-flex flex-column justify-content-center align-items-start background-home-content-lg">
+                <div class="mb-3 ps-3">
+                    <label for="exampleFormControlInput1" class="form-label py-3">Où ?</label>
+                    <input type="text" class="form-control w-100" id="search" name="term" data-search-lg placeholder="Nom de la ville...">
+                    <div class="overlay-result-lg">
+                        <ul class="search-result-item" id="results-lg"></ul>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div> #}
+
+{#?Script sm #}
+<script>
+    const searchInput = document.querySelector("[data-search]");
+    const resultsList = document.getElementById("results");
+
+    async function interrogerControleur(value) {
+        try {
+            const url = "{{ path('app_search_town') }}";
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ value }),
+            });
+
+            if (!response.ok) {
+                throw new Error('La requête a échoué.'); // Gérer les erreurs de requête
+            }
+
+            const data = await response.json();
+                        
+            let parsedData = JSON.parse(data);
+
+            console.log(parsedData)
+
+             resultsList.innerHTML = "";
+
+            for (let i = 0; i < parsedData.length; i++) {
+                let listItem = document.createElement("li");
+                // listItem.textContent = parsedData[i].name;
+                resultsList.appendChild(listItem);
+                let linkItem = document.createElement("a");
+                // listItem.classList.add("search-result-item");
+
+                var urlId = '{{ path("app_ad_by_location", {"id": "true_id"}) }}'; 
+                console.log(urlId)
+                urlId = urlId.replace("true_id",  parsedData[i].id);
+                linkItem.setAttribute("href", urlId)
+                linkItem.textContent = parsedData[i].name;
+
+                listItem.appendChild(linkItem)
+
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    searchInput.addEventListener('input', e => {
+        const value = e.target.value;
+        interrogerControleur(value);
+    });
+</script>
+
+
+
+
+{% endblock %}

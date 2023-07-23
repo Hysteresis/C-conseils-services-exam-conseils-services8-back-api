@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offres d'emplois{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row text-light header-ad-by-location">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col title-count">
+
+                        <h1 class="py-5 text-center">
+                            <span class="count-ads "> 
+                                {% for count in countAds[0] %}
+                                    {{ count }}
+                                {% endfor %}
+                            </span>
+                            offres d'emplois 
+                        </h1>                        
+               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-4">
+            <form action="">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Type de contrats
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {% for employmentContract in employmentContracts %}
+                                    <div class="">
+                                        <input type="checkbox">
+                                        <label for="">{{ employmentContract }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>  
+                </div> 
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                Salaire
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {% for employmentContract in employmentContracts %}
+                                    <div class="">
+                                        <input type="checkbox">
+                                        <label for="">{{ employmentContract }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>  
+                </div>   
+
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                                Date
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {% for employmentContract in employmentContracts %}
+                                    <div class="">
+                                        <input type="checkbox">
+                                        <label for="">{{ employmentContract }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>  
+                </div>   
+                <button class="btn btn-primary my-3">Recherche</button>
+            </form>      
+        </div>
+        <div class="col-8">
+        
+            <div class="row row-cols-1 row-cols-lg-3 g-4">
+                {% for ad in pagination %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <a href="{{ path('app_ad_show_one', {'id': ad.id}) }}">
+                                <img src="{{ ad.recruiter.company.image}} " class="card-img-top" alt="image de {{ad.recruiter.company.name}}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ad.recruiter.company.name}}</h5>
+                                <p>{{ ad.title }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-center">
+                                    <a class="btn btn-primary" href="{{ path('app_ad_show_one', {'id': ad.id}) }}" role="button">Voir l'offre</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                {% endfor %}
+                
+            </div>
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col py-4 d-flex justify-content-center">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+
+
+        </div> 
+        
+    </div>
+</div>
+{% endblock %}

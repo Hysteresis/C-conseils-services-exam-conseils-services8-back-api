@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces par ville{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row text-light header-ad-by-location">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="col py-5 title-count">
+                            <span class="fs-3 ">Liste des emplois à : </span> {{ town.name }} - {{ town.zipCode }}
+                        </h2>                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-12">
+            <div class="row row-cols-1 row-cols-lg-3 g-4">
+                {% for ad in ads %}
+                    <div class="col">
+                        <div class="card h-100">
+                                <img src="{{ ad.recruiter.company.image}} " class="card-img-top" alt="image de {{ ad.recruiter.company.name}} " >
+                            <div class="card-body">
+                                <h6 class="card-title">{{ad.recruiter.company.name}}</h6>
+                                <h4 class="card-text">{{ ad.job.title }}.</h4>
+                                <div class="d-flex justify-content-evenly py-3">
+                                    <span class="badge rounded-pill border border-dark text-dark ">{{ ad.town.name }} - {{ ad.town.zipCode }}</span>
+                                    <span class="badge rounded-pill border border-dark text-dark ">{{ ad.employmentContract.acronym }} </span>
+                                    <span class="badge rounded-pill border border-dark text-dark">{{ ad.salary.amount }} € par an </span>
+                                </div>
+                                <p class="pt-3">Annonce datant du : {{ ad.createdAt|date('j') }}/{{ ad.createdAt|date('m') }}/{{ ad.createdAt|date('Y') }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-center">
+                                    <a class="btn btn-primary" href="{{ path('app_ad_show_one', {'id': ad.id}) }}" role="button">Voir l'offre</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+stages:
+    - build
+    - test
+    - deploy
+
+build_php:
+    stage: build
+    image: drosalys/php-engine:8.2
+    script: 
+        - composer install --no-dev -a -n
+        
+    artifacts:
+        name: 'VENDOR_$(CI_COMMIT_SHORT_SHA)'
+        paths:
+            - vendor /
+            - public/bundles/
+        expire_in: 30 days
+
+# build_asset:
+
+test_php:
+    stage: test
+    image: drosalys/php-engine:8.2
+    dependencies: 
+        - build_php
+    script: 
+        - php bin/phpunit
+
+# deploy_prod:
+#     stage: deploy

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+
+<section class="vh-100">
+		<div class="container-fluid h-custom">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-md-9 col-lg-6 col-xl-5">
+					<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+				</div>
+				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+				<h1>Espcace recruteur </h1>
+				<h2>S'inscrire </h2>
+                    {{ form_start(registrationForm) }}
+
+					<div class="form-group">
+						{{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir votre email', 'required': 'required'}}) }}
+					
+						{{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir votre mot de passe', 'autocomplete': 'current-password', 'required': 'required'}}) }}
+					
+						{{ form_label(registrationForm.lastname, 'Nom', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir votre nom', 'required': 'required'}}) }}
+
+						{{ form_label(registrationForm.firstname, 'Prénom', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir votre prénom', 'required': 'required'}}) }}
+
+						{{ form_label(registrationForm.alias, 'Alias', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.alias, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir votre alias', 'required': 'required'}}) }}
+
+						{{ form_label(registrationForm.phoneNumber, 'Téléphone', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.phoneNumber, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir votre numéro de téléphone', 'required': 'required'}}) }}
+						
+						{{ form_label(registrationForm.company, 'Entreprise', {'label_attr': {'class': 'control-label'}}) }}
+						{{ form_widget(registrationForm.company, {'attr': {'class': 'form-control form-control-lg mb-3', 'placeholder': 'Saisir le nom de votre entreprise', 'required': 'required'}}) }}
+
+						
+						<div class="form-check">
+							{{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input', 'id': 'flexCheckDefault', 'required': 'required'}}) }}
+							<label class="form-check-label" for="flexCheckDefault">
+								Veuillez accepter nos conditions
+							</label>
+						</div>
+
+
+						<button type="submit" class="btn btn-primary">Register</button>
+					
+					</div>
+                    {{ form_end(registrationForm) }}
+					<form  method="post">
+					{% if app.request.method == 'POST' and app.request.request.get('register') is not null %}
+						{% if form.vars.value.agreeTerms %}
+							{{ form_widget(registrationForm) }}
+						{% else %}
+							{% set flashMessage = 'Vous devez accepter nos conditions.' %}
+							{{ app.flashes('warning', flashMessage) }}
+							{{ form_row(registrationForm.agreeTerms) }}
+							{{ form_widget(registrationForm) }}
+						{% endif %}
+					{% endif %}
+
+						
+					</form> 
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

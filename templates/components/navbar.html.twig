@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    {# <a class="navbar-brand" href="{{ path('app_home') }} ">Home</a> #}
+    <a class="navbar-brand" href="{{ path('app_home') }} ">
+      <img src="{{ asset('assets/image/logo-blue-white.png') }}" class="rounded-3" alt="" width="200" height="70">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Recruteurs
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{path('app_register_recruiter') }}">S'inscrire</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href=" {{ path('app_login') }} ">Créer une annonce</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Nos annonces
+          </a>
+          <ul class="dropdown-menu">
+            {# <li><a class="dropdown-item" href="{{ path('app_ad') }}">Les offres d'emploi</a></li> #}
+            <li><a class="dropdown-item" href="{{ path('app_ad') }}">Toutes les annonces</a></li>
+            {# <li><hr class="dropdown-divider"></li> #}
+            {# <li><a class="dropdown-item" href="#">Something else here</a></li> #}
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Espace candidats
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('app_register_candidate') }} ">S'inscrire</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href=" {{ path('app_login') }} ">Se connecter</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

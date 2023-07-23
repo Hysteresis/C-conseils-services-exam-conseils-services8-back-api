@@ -1,0 +1,7 @@
+# messages.fr.yaml
+security:
+    login:
+        invalid_credentials: "Veuillez saisir des identifiants valides."
+        signin: "Se connecter"
+    error:
+        messageKey: "Veuillez saisir des identifiants valides....."

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+
+<div {{ react_component('MyComponent', { 'fullName': number }) }}>
+        Loading... <i class="fa-fw fa fa-home"></i>
+    </div>
+    
+    {# Component living in a subdirectory: "assets/react/controllers/Admin/OtherComponent" #}
+    <div {{ react_component('Admin/OtherComponent') }}></div>
+{% endblock %}

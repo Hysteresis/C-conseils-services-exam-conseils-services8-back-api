@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Une offre d'emploi{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row ">
+    {{ dump(ad) }} 
+        <div class="col-12 position-relative">
+            <img src="https://f.hellowork.com/hellowork/tags/2.30.6//img/jpg/covers/cover-simone-blur.jpg" class="img-fluid" alt="fond">
+            <div class="overlay-text">
+                {# <h5 class="">{{ ad.recruiter.company.name }}</h5> #}
+                <h2 class="pb-2">{{ ad.job.title }}</h2>
+                <div class="row d-flex">
+                    <div class="col-8 mx-auto d-flex flex-column justify-content-between align-items-between ">
+                        <div class="d-flex justify-content-evenly pb-5">
+                            <span class="badge rounded-pill border border-light ">{{ ad.town.name }} - {{ ad.town.zipCode }}</span>
+                            <span class="badge rounded-pill border border-light  ">{{ ad.employmentContract.acronym }} </span>
+                            <span class="badge rounded-pill border border-light ">{{ ad.salary.amount }} € par an </span>
+                        </div>
+                        <div class="">                
+                            <a class="btn btn-primary px-5 rounded-pill" role="button" href="">Candidater à l'offre</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="pb-3">Annonce datant du : {{ ad.createdAt|date('j') }}/{{ ad.createdAt|date('m') }}/{{ ad.createdAt|date('Y') }}</p>
+
+        </div>
+        <div class="col-8">
+            <h5 class="">{{ ad.recruiter.company.name }} recherche...</h5>
+            <p>{{ ad.description }}</p>
+            <h5>Categorie du poste</h5>
+            <p>{{ ad.job.jobCategory.Title }}</p>
+        </div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{asset(ad.recruiter.company.image) }}" class="card-img-top" alt="image de {{ ad.recruiter.company.name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ad.recruiter.company.name }}</h5>
+                    <p class="card-text">{{ ad.recruiter.company.description }}</p>
+                    {# <a href="#" class="btn btn-primary">Go somewhere</a> #}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

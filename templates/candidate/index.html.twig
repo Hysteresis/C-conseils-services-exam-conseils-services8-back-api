@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidateController!{% endblock %}
+
+{% block body %}
+<h1>je suis un candidat connecté et heureux de vivre :</h1>
+{% if app.user %}
+{{ dump(app.user) }}
+{% else %}
+
+{% endif %}
+
+{% endblock %}

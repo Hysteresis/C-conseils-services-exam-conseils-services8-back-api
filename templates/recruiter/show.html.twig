@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecruiterController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+    <h2>Mes annonces</h2>
+        <div class="col">
+        {{ dump(app.user) }}
+            <i class="fas fa-plus"></i>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
