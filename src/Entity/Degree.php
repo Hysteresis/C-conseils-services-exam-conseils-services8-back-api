@@ -46,7 +46,7 @@ class Degree
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['degree:read', 'degree:write','ad:read'])]
+    #[Groups(['degree:read', 'degree:write', 'ad:read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -54,7 +54,7 @@ class Degree
     private ?string $level = null;
 
     #[ORM\OneToMany(mappedBy: 'degree', targetEntity: Ad::class)]
-    #[Groups(['degree:read', 'ad:read' ])]
+    #[Groups(['degree:read' ])]
     private Collection $ads;
 
     public function __construct()

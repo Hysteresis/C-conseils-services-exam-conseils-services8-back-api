@@ -48,7 +48,7 @@ class Company
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Recruiter::class)]
-    #[Groups(['company:read', 'company:write','ad:read'])]
+    #[Groups(['company:read', 'company:write', 'ad:read'])]
     private Collection $recruiters;
 
     #[ORM\Column(length: 255)]
@@ -56,11 +56,11 @@ class Company
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['company:read', 'company:write','ad:read'])]
+    #[Groups(['company:read', 'company:write'])]
     private ?string $siret = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['company:read', 'company:write','ad:read'])]
+    #[Groups(['company:read', 'company:write'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
@@ -68,7 +68,7 @@ class Company
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['company:read', 'company:write','ad:read'])]
+    #[Groups(['company:read', 'company:write', 'ad:read'])]
     private ?string $image = null;
 
     #[ORM\Column(length: 255)]

@@ -45,11 +45,11 @@ class Department
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['department:read', 'department:write','ad:read'])]
+    #[Groups(['department:read', 'department:write'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['department:read', 'department:write', 'ad:read'])]
+    #[Groups(['department:read', 'department:write'])]
     private ?string $number = null;
 
     #[ORM\Column(length: 255)]

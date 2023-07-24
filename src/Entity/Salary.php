@@ -50,12 +50,12 @@ class Salary
 
 
     #[ORM\OneToMany(mappedBy: 'salary', targetEntity: Ad::class)]
-    #[Groups(['salary:read', 'ad:read'])]
+    #[Groups(['salary:read'])]
     private Collection $ads;
 
     #[ORM\ManyToOne(inversedBy: 'salaries')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['salary:read', 'salary:write', 'ad:read'])]
+    #[Groups(['salary:read', 'salary:write'])]
     private ?SalaryCategory $salaryCategory = null;
 
     public function __construct()

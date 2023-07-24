@@ -7,6 +7,7 @@ use App\Repository\RecruiterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: RecruiterRepository::class)]
 #[ApiResource()]
@@ -18,6 +19,7 @@ class Recruiter extends User
     protected ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'recruiters')]
+    #[Groups(['ad:read'])]
     private ?Company $company = null;
 
     #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: Ad::class)]

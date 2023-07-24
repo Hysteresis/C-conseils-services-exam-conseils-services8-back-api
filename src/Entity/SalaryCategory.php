@@ -45,11 +45,11 @@ class SalaryCategory
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['salaryCategory:read', 'salaryCategory:write', 'ad:read'])]
+    #[Groups(['salaryCategory:read', 'salaryCategory:write'])]
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'salaryCategory', targetEntity: Salary::class)]
-    #[Groups(['salaryCategory:read', 'salaryCategory:write', 'ad:read'])]
+    #[Groups(['salaryCategory:read', 'salaryCategory:write'])]
     private Collection $salaries;
 
     public function __construct()
