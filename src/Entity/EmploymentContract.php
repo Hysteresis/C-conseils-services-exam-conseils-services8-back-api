@@ -49,11 +49,11 @@ class EmploymentContract
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['contracts:read', 'contracts:write', 'ad:read'])]
+    #[Groups(['contracts:read', 'contracts:write'])]
     private ?string $acronym = null;
 
     #[ORM\OneToMany(mappedBy: 'employmentContract', targetEntity: Ad::class)]
-    #[Groups(['contracts:read', 'contracts:write', 'ad:read'])]
+    #[Groups(['contracts:read', 'contracts:write'])]
     private Collection $ads;
 
     public function __construct()

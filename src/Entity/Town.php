@@ -46,11 +46,11 @@ class Town
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['towns:read', 'towns:write','ad:read'])]
+    #[Groups(['towns:read', 'towns:write'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['towns:read', 'towns:write','ad:read'])]
+    #[Groups(['towns:read', 'towns:write'])]
     private ?string $zipCode = null;
 
     #[ORM\ManyToOne(inversedBy: 'towns')]
@@ -59,7 +59,7 @@ class Town
     private ?Department $departmentTown = null;
 
     #[ORM\OneToMany(mappedBy: 'town', targetEntity: Ad::class)]
-    #[Groups(['towns:read', 'towns:write','ad:read'])]
+    #[Groups(['towns:read', 'towns:write'])]
     private Collection $ads;
 
     public function __construct()

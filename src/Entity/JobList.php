@@ -45,12 +45,12 @@ class JobList
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['job:read', 'job:write', 'ad:read'])]
+    #[Groups(['job:read', 'job:write'])]
     private ?string $title = null;
 
     #[ORM\ManyToOne(inversedBy: 'jobLists')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['job:read', 'job:write', 'ad:read'])]
+    #[Groups(['job:read', 'job:write'])]
     private ?JobCategory $jobCategory = null;
 
     #[ORM\OneToMany(mappedBy: 'job', targetEntity: Ad::class)]

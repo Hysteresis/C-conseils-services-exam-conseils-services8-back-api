@@ -46,15 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['ad:read'])]
     protected ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['ad:read'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['ad:read'])]
     private ?string $alias = null;
 
     #[ORM\Column(type: 'boolean')]
