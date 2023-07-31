@@ -37,28 +37,12 @@ class HomeController extends AbstractController
     {
         $content = $request->getContent();
 
-
-        //transformer en array $data
         $data = json_decode($content, true);
-
         $letterTown = $data['value'];
-
         $listTowns = $townRepository->findByTown($letterTown);
-
-        // Serialize the list of towns using the SerializerInterface
         $jsonData = $serializer->serialize($listTowns, 'json', ['groups' => 'read']);
-        // dump($jsonData);
-
-        // Créez une réponse avec le contenu JSON
         $response = new JsonResponse($jsonData);
-        // dump($response);
-
-
-        // Définissez le type de contenu de la réponse comme application/json
         $response->headers->set('Content-Type', 'application/json');
-
-        
-
         return $response;
     }
 

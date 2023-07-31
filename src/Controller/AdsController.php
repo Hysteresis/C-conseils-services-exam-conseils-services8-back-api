@@ -69,7 +69,7 @@ class AdsController extends AbstractController
         int $id,
     ): Response 
     {
-        dump($id);
+        // dump($id);
         $townRepository->findAll();
         $recruiterRepository->findAll();     
         $employmentContractRepository->findAll();     
@@ -80,7 +80,7 @@ class AdsController extends AbstractController
         $companyRepository->findAll();
 
         $ad = $adRepository->find($id);
-        dump($ad);
+        // dump($ad);
 
 
         return $this->render('ad/show_one.html.twig', [

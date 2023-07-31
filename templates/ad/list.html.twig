@@ -99,8 +99,8 @@
                 {% for ad in pagination %}
                     <div class="col">
                         <div class="card h-100">
-                            <a href="{{ path('app_ad_show_one', {'id': ad.id}) }}">
-                                <img src="{{ ad.recruiter.company.image}} " class="card-img-top" alt="image de {{ad.recruiter.company.name}}">
+                            <a href="{{ path('app_ad_show_one', {'id': ad.id}) }}">   
+                                <img src="{{ asset('assets/img/' ~ ad.recruiter.company.image) }} " class="card-img-top" alt="image de {{ad.recruiter.company.name}}">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title">{{ad.recruiter.company.name}}</h5>

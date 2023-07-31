@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row ">
-    {{ dump(ad) }} 
+    {# {{ dump(ad) }}  #}
         <div class="col-12 position-relative">
             <img src="https://f.hellowork.com/hellowork/tags/2.30.6//img/jpg/covers/cover-simone-blur.jpg" class="img-fluid" alt="fond">
             <div class="overlay-text">
@@ -38,11 +38,13 @@
         </div>
         <div class="col-4">
             <div class="card" style="width: 18rem;">
+
+               
+
                 <img src="{{asset(ad.recruiter.company.image) }}" class="card-img-top" alt="image de {{ ad.recruiter.company.name}}">
                 <div class="card-body">
                     <h5 class="card-title">{{ ad.recruiter.company.name }}</h5>
                     <p class="card-text">{{ ad.recruiter.company.description }}</p>
-                    {# <a href="#" class="btn btn-primary">Go somewhere</a> #}
                 </div>
             </div>
         </div>
