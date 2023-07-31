@@ -67,7 +67,7 @@
     const searchInput = document.querySelector("[data-search]");
     const resultsList = document.getElementById("results");
 
-    async function interrogerControleur(value) {
+    async function findTown(value) {
         try {
             const url = "{{ path('app_search_town') }}";
             const response = await fetch(url, {
@@ -77,16 +77,12 @@
                 },
                 body: JSON.stringify({ value }),
             });
-
             if (!response.ok) {
                 throw new Error('La requête a échoué.'); // Gérer les erreurs de requête
             }
-
             const data = await response.json();
                         
             let parsedData = JSON.parse(data);
-
-            console.log(parsedData)
 
              resultsList.innerHTML = "";
 
@@ -114,7 +110,7 @@
 
     searchInput.addEventListener('input', e => {
         const value = e.target.value;
-        interrogerControleur(value);
+        findTown(value);
     });
 </script>
 
